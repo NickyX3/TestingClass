@@ -1,0 +1,24 @@
+<?php
+	error_reporting(E_ERROR | E_WARNING);
+	setlocale(LC_TIME,'ru_RU.UTF-8');
+	
+	include_once 'cloader.php';
+	
+	$results = array();
+	$am 	= new TestClass();
+	
+	$c		= new Bench();
+	
+	for($a=1;$a<=10;$a++) {
+		$b	= new Bench();
+		for($i=1;$i<=100000;$i++) {
+			$nav 	= $am->generateMenu();
+		}
+		$results[] = $b->end(false);
+	}
+	
+	echo '<pre>'.print_r($results,1).'</pre>';
+	$total = $c->end(false);
+	
+	echo 'Total: '.$total.', Average: '.($total/count($results));
+?>
